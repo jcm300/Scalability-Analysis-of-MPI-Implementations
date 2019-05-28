@@ -8,7 +8,7 @@
 module load gcc/5.3.0
 module load gnu/openmpi_eth/2.0.0
 
-cd Stencil
+cd Stencil/MPI
 
 rm Teste.*
 mkdir times
