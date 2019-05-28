@@ -8,15 +8,17 @@
 module load gcc/5.3.0
 module load gnu/openmpi_eth/2.0.0
 
-rm Teste.*
-make clean
-make
+cd Stencil
 
+rm Teste.*
 mkdir times
 
 SIZE=512
 while [ $SIZE -lt 2049 ]; do
     sed "s/#define M_SIZE.*/#define M_SIZE $SIZE/g" -i src/matrix_utils.hpp
+    
+    make clean
+    make
 
     OMP_NUM_THREADS=2
     while [ $OMP_NUM_THREADS -lt 65 ]; do
