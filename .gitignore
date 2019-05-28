@@ -50,3 +50,23 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+**/*.o
+**/*.out
+**/*.pdf
+**/bin/**
+**/build/**
+.vscode/**
+**/times/**
+**/*.xml
+
+## macOS
+**/._*
+**/.DS_Store
+
+
+## Latex
+**/*.log
+**/*.aux
+**/*.toc
+**/*.bcf
