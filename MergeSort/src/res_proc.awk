@@ -1,13 +1,12 @@
 BEGIN                           {IGNORECASE=1;BLOCKSIZE=15;curL=0;block=-1;}
-/^Sorting/                      {
+                                {
                                     if(!(curL % BLOCKSIZE)){
                                         curL=0;
                                         block ++;
                                     }
-                                    time[block][curL] = $5 + 0.0;
+                                    time[block][curL] = $1 + 0.0;
                                     curL ++;
                                 }
-
 END                             {
                                     for(block in time){
                                         asort(time[block], time[block]);
