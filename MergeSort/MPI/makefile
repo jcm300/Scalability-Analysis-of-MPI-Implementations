@@ -1,10 +1,19 @@
-OBJ    = mergeSortMPI
+MPI    = mergeSortMPI
+COMM   = mergeSortCommOnly
 CC     = mpicc
 CFLAGS = -Wall -ansi -pedantic -std=c99 
-LFLAGS = -lm -o $(OBJ)
+MPI_LFLAGS = -lm -o $(MPI)
+COMM_LFLAGS = -lm -o $(COMM)
 
-$(OBJ): $(OBJ).c
-	$(CC) $(CFLAGS) $(OBJ).c $(LFLAGS)
+default: all
+
+$(MPI): $(MPI).c
+	$(CC) $(CFLAGS) $(MPI).c $(MPI_LFLAGS)
+
+$(COMM): $(COMM).c
+	$(CC) $(CFLAGS) $(COMM).c $(COMM_LFLAGS)
+
+all: $(COMM) $(MPI)
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(MPI) $(COMM)

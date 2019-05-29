@@ -14,6 +14,7 @@ rm AP.*
 make clean
 make
 
+rm -rf times
 mkdir times
 
 SIZE=512
@@ -22,7 +23,8 @@ while [ $SIZE -lt 2049 ]; do
     while [ $OMP_NUM_THREADS -lt 65 ]; do
         NUM=0
         while [ $NUM -lt 15 ]; do
-            mpirun --map-by node --oversubscribe -np $OMP_NUM_THREADS mergeSortMPI $SIZE >> times/mergesort_$SIZE.txt
+            mpirun --map-by node --oversubscribe -np $OMP_NUM_THREADS mergeSortMPI $SIZE >> times/mpi_$SIZE.txt
+            mpirun --map-by node --oversubscribe -np $OMP_NUM_THREADS mergeSortCommOnly $SIZE >> times/comm_$SIZE.txt
             let NUM=NUM+1
         done
         let OMP_NUM_THREADS=$OMP_NUM_THREADS*2
