@@ -285,15 +285,11 @@ int main(int argc, char** argv) {
 		zeroStartTime = MPI_Wtime();
 		globalArray = mergeSort(height, id, localArray, localArraySize, MPI_COMM_WORLD, globalArray);
 		zeroTotalTime = MPI_Wtime() - zeroStartTime;
-		printf("Process #%d of %d on %s took %f seconds \n", 
-			id, numProcs, myHostName, zeroTotalTime);
 	}
 	else {
 		processStartTime = MPI_Wtime();
 	        mergeSort(height, id, localArray, localArraySize, MPI_COMM_WORLD, NULL);
 		processTotalTime = MPI_Wtime() - processStartTime;
-		printf("Process #%d of %d on %s took %f seconds \n", 
-			id, numProcs, myHostName, processTotalTime);
 	}
     //End timing
     localTime = MPI_Wtime() - startTime;
