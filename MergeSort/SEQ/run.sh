@@ -19,7 +19,7 @@ SIZE=512
 while [ $SIZE -lt 2049 ]; do
     NUM=0
     while [ $NUM -lt 15 ]; do
-        ./mergeSortSeq $SIZE >> times/mergesort_$SIZE.txt
+        (time ./mergeSortSeq $SIZE) &> times/mergesort_$SIZE.txt
         let NUM=NUM+1
     done
     let SIZE=$SIZE*2
