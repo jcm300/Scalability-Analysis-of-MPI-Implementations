@@ -14,6 +14,7 @@
 #include <stdio.h>   // printf
 #include <stdlib.h>  // malloc, free, rand(), srand()
 #include <time.h>    // time for random generator and timing
+#include <omp.h>    // time for random generator and timing
 #include <string.h>  // memcpy
 #include <limits.h>  // INT_MAX
 
@@ -120,7 +121,7 @@ int* mergeSort(int array[], int arraySize){
 int main(int argc, char** argv) {
     int arraySize;
     int *array;
-    clock_t startTime, endTime;
+    double startTime, endTime;
 
     // get size of array
     getInput(argc, argv, &arraySize);
@@ -131,16 +132,16 @@ int main(int argc, char** argv) {
     //printList("UNSORTED ARRAY", array, arraySize);  // Line A
     
     //Start timing
-    startTime = clock();
+    startTime = omp_get_wtime();
     
     //Merge sort
 	array = mergeSort(array, arraySize);
 
     //End timing
-    endTime = clock();
+    endTime = omp_get_wtime();
 
     //printList("FINAL SORTED ARRAY", array, arraySize);  // Line B
-    printf("Sorting %d integers took %f seconds \n", arraySize, (double)(endTime-startTime)/CLOCKS_PER_SEC);
+    printf("Sorting %d integers took %f seconds \n", arraySize, endTime-startTime);
 	free(array);
 	
     return 0;

@@ -1,6 +1,6 @@
 PROG = mergeSortSeq
 CC = gcc
-CFLAGS = -Wall -ansi -pedantic -std=c99 
+CFLAGS = -Wall -ansi -pedantic -std=c99 -fopenmp
 LFLAGS = -o $(PROG)
 
 $(PROG): $(PROG).c
